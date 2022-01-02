@@ -62,4 +62,22 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDERS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void adding_items_to_empty_or_existing_order_should_sum_the_total_based_on_items_ordered() throws itemNotFoundException {
+        int total = restaurant.addItemToOrder("Sweet corn soup");
+        assertEquals(119,total);
+        assertEquals(119,restaurant.getOrderTotal());
+        restaurant.addToMenu("Biryani",80);
+        total = restaurant.addItemToOrder("Biryani");
+        assertEquals(199,total);
+        assertEquals(199,restaurant.getOrderTotal());
+    }
+
+    @Test
+    public void removing_existing_menu_items_from_empty_order_should_display_total_as_zero() throws itemNotFoundException{
+        ssertThrows(itemNotFoundException.class, () -> restaurant.removeItemFromOrder("Sweet corn soup"));
+        assertEquals(0, restaurant.getOrderTotal());
+    }
 }
