@@ -77,7 +77,7 @@ class RestaurantTest {
 
     @Test
     public void removing_existing_menu_items_from_empty_order_should_display_total_as_zero() throws itemNotFoundException{
-        ssertThrows(itemNotFoundException.class, () -> restaurant.removeItemFromOrder("Sweet corn soup"));
+        assertThrows(itemNotFoundException.class, () -> restaurant.removeItemFromOrder("Sweet corn soup"));
         assertEquals(0, restaurant.getOrderTotal());
     }
 }
